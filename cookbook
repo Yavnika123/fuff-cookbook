@@ -1,0 +1,38 @@
+Introduction
+Overview of ffuf: ffuf is a web fuzzer tool used to find hidden files, directories, and vulnerabilities on web servers.
+Installation: Install ffuf via a package manager or compile from source.
+Basic Commands
+Simple Directory Bruteforce:
+ffuf -u http://target/FUZZ -w /path/to/wordlist
+Purpose: Finds directories on the target site.
+File Extension Bruteforce:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -e .php,.html,.txt
+Purpose: Finds files with specified extensions on the target site.
+Advanced Techniques:
+
+Multiple Wordlists:
+ffuf -u http://target/FUZZ/FUZZ2 -w /path/to/wordlist1:/path/to/wordlist2
+Purpose: Uses two wordlists to brute force different parts of the URL.
+  
+Filtering Results:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -mc 200
+Purpose: Shows only results with status code 200 (OK).
+  
+Response Size Filtering:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -fs 4242
+Purpose: Shows only results with a specific response size.
+  
+Authentication and Headers:
+Using Cookies:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -b 'SESSIONID=123456'
+Purpose: Uses a session cookie for authenticated requests.
+Custom Headers:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -H 'User-Agent: Mozilla/5.0'
+Purpose: Sets a custom User-Agent header.
+Handling Advanced Scenarios:
+Using POST Data
+ffuf -u http://target/login -w /path/to/usernames:/path/to/passwords -X POST -d 'username=FUZZ&password=FUZZ2'
+Purpose: Brute forces login by using POST data.
+Rate Limiting:
+ffuf -u http://target/FUZZ -w /path/to/wordlist -rate 10
+Purpose: Limits the request rate to 10 per second.
